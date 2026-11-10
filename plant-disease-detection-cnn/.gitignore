@@ -1,0 +1,21 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+
+# Dataset and generated model files can be large and may have separate licenses.
+dataset/raw/
+dataset/train/
+dataset/val/
+dataset/test/
+models/*.keras
+models/*.h5
+models/class_names.json
+models/*.png
+models/*.txt
+
+# Uploaded user images
+static/uploads/*
+!static/uploads/.gitkeep

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <main class="container">
+        <section class="hero">
+            <p class="eyebrow">ANALYSIS COMPLETE</p>
+            <h1>Prediction Result</h1>
+        </section>
+
+        <section class="panel result-panel">
+            <img class="preview" src="{{ image_url }}" alt="Uploaded plant leaf">
+            <p class="eyebrow">PREDICTED CLASS</p>
+            <h2>{{ prediction }}</h2>
+            <p class="confidence">Model confidence score: {{ "%.2f"|format(confidence) }}%</p>
+
+            <h3>Top predictions</h3>
+            <ul class="prediction-list">
+                {% for item in top_predictions %}
+                    <li>
+                        <span>{{ item.label }}</span>
+                        <strong>{{ "%.2f"|format(item.confidence) }}%</strong>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <p class="disclaimer">
+                The confidence score is the model's output, not a guarantee of correctness.
+                Confirm suspected disease with an agricultural expert.
+            </p>
+            <a class="button-link" href="{{ url_for('home') }}">Analyze another image</a>
+        </section>
+    </main>
+</body>
+</html>

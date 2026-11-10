@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Disease Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <main class="container">
+        <section class="hero">
+            <p class="eyebrow">AI-POWERED AGRICULTURE</p>
+            <h1>Plant Disease Detection</h1>
+            <p class="subtitle">
+                Upload a clear image of a plant leaf to classify its visible disease category.
+            </p>
+        </section>
+
+        <section class="panel">
+            <form action="{{ url_for('predict') }}" method="POST" enctype="multipart/form-data">
+                <label class="upload-label" for="leaf_image">Choose a leaf image</label>
+                <input type="file" id="leaf_image" name="leaf_image"
+                       accept=".png,.jpg,.jpeg,.webp" required>
+                <p class="hint">Supported formats: JPG, JPEG, PNG, WEBP. Maximum 8 MB.</p>
+                <button type="submit">Analyze Image</button>
+            </form>
+
+            {% if error %}
+                <div class="error" role="alert">{{ error }}</div>
+            {% endif %}
+        </section>
+
+        <p class="disclaimer">
+            Educational demonstration only. Predictions are not a substitute for advice
+            from a qualified agricultural expert.
+        </p>
+    </main>
+</body>
+</html>
